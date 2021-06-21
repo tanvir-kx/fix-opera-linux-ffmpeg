@@ -5,13 +5,15 @@ if [[ $(whoami) != "root" ]]; then
   printf 'Try to run it with sudo\n'
   exit 1
 fi
-
+mkdir -p /usr/lib/x86_64-linux-gnu/opera/lib_extra
 readonly TEMP_FOLDER='/tmp/'
 readonly OPERA_FOLDER='/usr/lib/x86_64-linux-gnu/opera/'
+readonly OPERA_LIB_EXTRA_FOLDER='/usr/lib/x86_64-linux-gnu/opera/lib_extra/'
 readonly FILE_NAME='libffmpeg.so'
 readonly ZIP_FILE='.zip'
 readonly TEMP_FILE="$TEMP_FOLDER$FILE_NAME"
 readonly OPERA_FILE="$OPERA_FOLDER$FILE_NAME"
+readonly OPERA_LIB_EXTRA_FILE="$OPERA_LIB_EXTRA_FOLDER$FILE_NAME"
 
 readonly GIT_API=https://api.github.com/repos/iteufel/nwjs-ffmpeg-prebuilt/releases/latest
 
@@ -27,9 +29,13 @@ printf "\nUnzipping ...\n\n"
 
 unzip "$TEMP_FILE$ZIP_FILE" -d $TEMP_FILE
 
-printf "\nMoving file on $OPERA_FILE ...\n"
+# For opera directory
+#printf "\nMoving file on $OPERA_FILE ...\n"
+#mv -f "$TEMP_FILE/$FILE_NAME" $OPERA_FILE
 
-mv -f "$TEMP_FILE/$FILE_NAME" $OPERA_FILE
+# For opera/lib_extra directory
+printf "\nMoving file on $OPERA_LIB_EXTRA_FILE ...\n"
+mv -f "$TEMP_FILE/$FILE_NAME" $OPERA_LIB_EXTRA_FILE
 
 printf '\nDeleting Temporary files ...\n'
 
