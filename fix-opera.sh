@@ -14,8 +14,10 @@ readonly ZIP_FILE='.zip'
 readonly TEMP_FILE="$TEMP_FOLDER$FILE_NAME"
 readonly OPERA_FILE="$OPERA_FOLDER$FILE_NAME"
 readonly OPERA_LIB_EXTRA_FILE="$OPERA_LIB_EXTRA_FOLDER$FILE_NAME"
+readonly RELEASE_TAG='tags/0.52.2' # FOR LATEST RELEASE USE 'latest'
+## for Spesific Release as sometime latest build dont have linux-x64 version asset to download
 
-readonly GIT_API=https://api.github.com/repos/iteufel/nwjs-ffmpeg-prebuilt/releases/latest
+readonly GIT_API=https://api.github.com/repos/iteufel/nwjs-ffmpeg-prebuilt/releases/$RELEASE_TAG
 
 printf '\nGetting Url ...\n'
 
